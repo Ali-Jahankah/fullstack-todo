@@ -20,7 +20,7 @@ const Profile: FC = (): ReactElement => {
         }}
       />
       <Typography variant="h5">Ali Jahankah</Typography>
-      <Typography variant="h6">
+      <Typography variant="h6" sx={{ color: 'grey.300' }}>
         Software Engineer | London
       </Typography>
     </Box>
