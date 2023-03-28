@@ -6,6 +6,8 @@ import {
   Box,
   Typography,
 } from '@mui/material';
+import SideBar from '../../components/Sidebar';
+import TaskArea from '../../components/TaskArea';
 const Dashboard: FC = (): ReactElement => {
   const bgColor = {
     background:
@@ -57,39 +59,8 @@ const Dashboard: FC = (): ReactElement => {
           alignItems: 'center',
         }}
       >
-        <Grid
-          item
-          xs={12}
-          md={8}
-          p={3}
-          sx={{
-            flex: { xs: 1, sm: 1, md: 1, lg: 1, xl: 1 },
-            width: { xs: '100%' },
-          }}
-        >
-          Todos Area
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={4}
-          sx={{
-            position: { md: 'fixed' },
-            right: { md: '0px' },
-            top: { md: '64px' },
-            bottom: { md: '-60px' },
-            backgroundColor: 'background.paper',
-            height: { md: '100%' },
-            width: { xs: '100%' },
-            zIndex: { md: '-1' },
-            flex: { xs: 1, sm: 1, md: 1, lg: 1, xl: 1 },
-          }}
-          p={3}
-          width="100%"
-        >
-          Create Todo Area
-        </Grid>
+        <TaskArea />
+        <SideBar />
       </Grid>
 
       <Grid

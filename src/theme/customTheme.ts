@@ -12,4 +12,8 @@ export const customTheme: ThemeOptions = createTheme({
       default: 'rgba(0,0,0,.96)',
     },
   },
+  typography: {
+    fontSize: 10,
+    fontFamily: 'sans-serif',
+  },
 });
