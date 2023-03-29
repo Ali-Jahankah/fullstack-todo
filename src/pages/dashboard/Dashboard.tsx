@@ -6,45 +6,18 @@ import {
   Box,
   Typography,
 } from '@mui/material';
-import SideBar from '../../components/Sidebar';
-import TaskArea from '../../components/TaskArea';
+import Sidebar from '../../components/sidebar/Index';
+import TaskArea from '../../components/tasksArea/Index';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 const Dashboard: FC = (): ReactElement => {
-  const bgColor = {
-    background:
-      'linear-gradient(to right, #ff5858, #9a94e3)',
-  };
   return (
     <Grid
       container
       minHeight="100vh"
       sx={{ flexDirection: 'column', textAlign: 'center' }}
     >
-      <Grid xs={12} container item>
-        <AppBar position="static">
-          <Toolbar sx={bgColor}>
-            <Box
-              component="img"
-              src="/img/logo.png"
-              alt="flying v guitar"
-              sx={{
-                maxWidth: '100px',
-              }}
-            />
-            <Typography
-              variant="h5"
-              sx={{
-                textAlign: 'center',
-                flex: 1,
-                color: 'black',
-              }}
-              mx={2}
-            >
-              Full-Stack Todo
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </Grid>
-
+      <Header></Header>
       <Grid
         container
         item
@@ -57,22 +30,13 @@ const Dashboard: FC = (): ReactElement => {
           },
           justifyContent: 'center',
           alignItems: 'center',
+          alignContent: 'baseline',
         }}
       >
         <TaskArea />
-        <SideBar />
+        <Sidebar />
       </Grid>
-
-      <Grid
-        xs={12}
-        item
-        sx={{ ...bgColor, color: 'black' }}
-        p={1}
-      >
-        <Typography variant="h6">
-          Created By Ali Jahankah - 2023
-        </Typography>
-      </Grid>
+      <Footer></Footer>
     </Grid>
   );
 };

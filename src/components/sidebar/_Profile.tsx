@@ -1,7 +1,11 @@
 import { Box, Avatar, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-
-const Profile: FC = (): ReactElement => {
+import PropTypes from 'prop-types';
+interface IUser {
+  name: string;
+}
+const Profile: FC<IUser> = (props): ReactElement => {
+  const { name = 'Ali Jahankah' } = props;
   return (
     <Box
       sx={{
@@ -15,16 +19,21 @@ const Profile: FC = (): ReactElement => {
         alt="Ali's Photo"
         src="/img/profile.jpeg"
         sx={{
-          width: 100,
-          height: 100,
+          width: 80,
+          height: 80,
         }}
       />
-      <Typography variant="h5">Ali Jahankah</Typography>
-      <Typography variant="h6" sx={{ color: 'grey.300' }}>
+      <Typography variant="h5">{name}</Typography>
+      <Typography
+        variant="h6"
+        sx={{ color: 'grey.300', fontSize: '1rem' }}
+      >
         Software Engineer | London
       </Typography>
     </Box>
   );
 };
-
+Profile.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 export default Profile;

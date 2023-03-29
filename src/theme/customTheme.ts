@@ -22,8 +22,4 @@ export const customTheme: ThemeOptions = createTheme({
       400: '#bdbdbd',
     },
   },
-  typography: {
-    fontSize: 10,
-    fontFamily: 'sans-serif',
-  },
 });
