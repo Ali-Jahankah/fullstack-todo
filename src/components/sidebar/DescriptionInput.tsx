@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import React, { ReactElement, FC } from 'react';
 import { ITextField } from './interfaces/ITesxtField';
-
+import PropTypes from 'prop-types';
 const DescriptionInput: FC<ITextField> = (
   props,
 ): ReactElement => {
@@ -25,5 +25,8 @@ const DescriptionInput: FC<ITextField> = (
     ></TextField>
   );
 };
-
+DescriptionInput.propTypes = {
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+};
 export default DescriptionInput;

@@ -1,15 +1,11 @@
 import React, { FC, ReactElement } from 'react';
-import {
-  Grid,
-  AppBar,
-  Toolbar,
-  Box,
-  Typography,
-} from '@mui/material';
+
 import Sidebar from '../../components/sidebar/Index';
 import TaskArea from '../../components/tasksArea/Index';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { Grid } from '@mui/material';
+
 const Dashboard: FC = (): ReactElement => {
   return (
     <Grid

@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import TextFields from './TextFields';
+import DateInput from './DateInput';
 
 const TodoForm: FC = (): ReactElement => {
   return (
@@ -13,8 +14,10 @@ const TodoForm: FC = (): ReactElement => {
       <Typography variant="h6" m={3}>
         Create a new task
       </Typography>
-
-      <TextFields></TextFields>
+      <Stack spacing={2}>
+        <TextFields></TextFields>
+        <DateInput></DateInput>
+      </Stack>
     </Box>
   );
 };

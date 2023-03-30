@@ -5,10 +5,10 @@ import TitleInput from './TitleInput';
 
 const TextFields: FC = (): ReactElement => {
   return (
-    <Stack spacing={2}>
+    <>
       <TitleInput></TitleInput>
       <DescriptionInput></DescriptionInput>
-    </Stack>
+    </>
   );
 };
 

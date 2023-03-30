@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import React, { ReactElement, FC } from 'react';
 import { ITextField } from './interfaces/ITesxtField';
-
+import PropTypes from 'prop-types';
 const TitleInput: FC<ITextField> = (
   props,
 ): ReactElement => {
@@ -23,5 +23,8 @@ const TitleInput: FC<ITextField> = (
     ></TextField>
   );
 };
-
+TitleInput.propTypes = {
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+};
 export default TitleInput;
