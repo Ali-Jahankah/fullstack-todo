@@ -1,7 +1,7 @@
-import { Grid } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
+import { Grid } from '@mui/material';
 
-const TaskArea = () => {
+const TaskArea: FC = (): ReactElement => {
   return (
     <Grid
       item

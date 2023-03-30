@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 
-const Header = () => {
+const Header: FC = (): ReactElement => {
   const bgColor = {
     background:
       'linear-gradient(to right, #ff5858, #9a94e3)',
