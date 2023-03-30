@@ -1,12 +1,8 @@
-import {
-  Box,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import TextFields from './TextFields';
 import DateInput from './DateInput';
+import SelectInput from './SelectInput';
 
 const TodoForm: FC = (): ReactElement => {
   return (
@@ -17,6 +13,16 @@ const TodoForm: FC = (): ReactElement => {
       <Stack spacing={2}>
         <TextFields></TextFields>
         <DateInput></DateInput>
+        <Stack direction="row" spacing={2}>
+          <SelectInput
+            options={['New', 'Done', 'Onboard']}
+            label="Status"
+          ></SelectInput>
+          <SelectInput
+            options={['Easy', 'Medium', 'Difficult']}
+            label="Level"
+          ></SelectInput>
+        </Stack>
       </Stack>
     </Box>
   );
