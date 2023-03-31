@@ -46,7 +46,7 @@ const Header: FC = (): ReactElement => {
               src="/img/logo.png"
               alt="flying v guitar"
               sx={{
-                maxWidth: '100px',
+                maxWidth: '140px',
                 rotate: '-90deg',
                 transform:
                   'translateX(-50px) translateY(0px)',
