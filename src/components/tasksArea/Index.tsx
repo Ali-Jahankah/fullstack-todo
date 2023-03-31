@@ -12,6 +12,7 @@ const TaskArea: FC = (): ReactElement => {
         flex: { xs: 1, sm: 1, md: 1, lg: 1, xl: 1 },
         width: { xs: '100%' },
       }}
+      alignSelf="normal"
     >
       Todos Area
     </Grid>

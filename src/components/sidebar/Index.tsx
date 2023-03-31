@@ -1,9 +1,11 @@
-import { Grid } from '@mui/material';
-import React, { FC, ReactElement } from 'react';
+import { Box, Button, Grid } from '@mui/material';
+import React, { FC, ReactElement, useState } from 'react';
 import Profile from './_Profile';
 import TodoForm from './_TodoForm';
-
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import { KeyboardDoubleArrowDown } from '@mui/icons-material';
 const Sidebar: FC = (): ReactElement => {
+  const [showBar, setShowBar] = useState<boolean>(true);
   return (
     <Grid
       item
@@ -16,16 +18,44 @@ const Sidebar: FC = (): ReactElement => {
         top: { md: '0px' },
 
         backgroundColor: 'background.paper',
-        height: { md: '100%' },
-        width: { xs: '100%' },
-
-        flex: { xs: 1, sm: 1, md: 1, lg: 1, xl: 1 },
+        maxHeight: { md: '100vh' },
+        alignSelf: { md: 'normal' },
+        padding: {
+          xs: '1em',
+        },
       }}
-      p={3}
       width="100%"
+      py={0}
     >
-      <Profile name="Ali Jahankah"></Profile>
-      <TodoForm></TodoForm>
+      <Box
+        sx={{
+          maxHeight: showBar ? '100vh' : '0vh',
+          overflow: 'hidden',
+          transition: '1.4s all',
+        }}
+      >
+        <Profile name="Ali Jahankah"></Profile>
+        <TodoForm></TodoForm>
+      </Box>
+
+      <Button
+        sx={{
+          margin: '3em auto 0em',
+        }}
+        onClick={() => setShowBar(!showBar)}
+      >
+        {showBar ? (
+          <KeyboardDoubleArrowUpIcon
+            fontSize="large"
+            color="error"
+          ></KeyboardDoubleArrowUpIcon>
+        ) : (
+          <KeyboardDoubleArrowDown
+            fontSize="large"
+            color="error"
+          ></KeyboardDoubleArrowDown>
+        )}
+      </Button>
     </Grid>
   );
 };

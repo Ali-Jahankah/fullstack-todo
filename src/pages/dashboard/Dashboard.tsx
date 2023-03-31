@@ -11,7 +11,10 @@ const Dashboard: FC = (): ReactElement => {
     <Grid
       container
       minHeight="100vh"
-      sx={{ flexDirection: 'column', textAlign: 'center' }}
+      sx={{
+        flexDirection: 'column',
+        textAlign: 'center',
+      }}
     >
       <Header></Header>
       <Grid
@@ -26,7 +29,6 @@ const Dashboard: FC = (): ReactElement => {
           },
           justifyContent: 'center',
           alignItems: 'center',
-          alignContent: 'baseline',
         }}
       >
         <TaskArea />

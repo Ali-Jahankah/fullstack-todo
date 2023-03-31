@@ -1,4 +1,9 @@
-import { Box, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Stack,
+  Typography,
+} from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import TextFields from './TextFields';
 import DateInput from './DateInput';
@@ -23,6 +28,7 @@ const TodoForm: FC = (): ReactElement => {
             label="Level"
           ></SelectInput>
         </Stack>
+        <Button variant="contained">Submit</Button>
       </Stack>
     </Box>
   );
