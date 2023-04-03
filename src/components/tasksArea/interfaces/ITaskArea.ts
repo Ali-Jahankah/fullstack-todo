@@ -1,3 +1,9 @@
+import { tasks } from '../enums/tasks';
+
 export interface ICounter {
-  task?: string;
+  type: {
+    task: tasks;
+    color: string;
+    count: number;
+  };
 }
