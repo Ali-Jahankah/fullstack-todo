@@ -10,7 +10,7 @@ const Dashboard: FC = (): ReactElement => {
   return (
     <Grid
       container
-      minHeight="500vh"
+      minHeight="100vh"
       sx={{
         flexDirection: 'column',
         textAlign: 'center',
