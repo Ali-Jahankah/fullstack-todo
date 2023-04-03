@@ -1,6 +1,12 @@
 import React, { FC, ReactElement } from 'react';
-import { Grid } from '@mui/material';
-
+import {
+  Avatar,
+  Box,
+  Grid,
+  Typography,
+} from '@mui/material';
+import { format } from 'date-fns';
+import Counter from './Counter';
 const TaskArea: FC = (): ReactElement => {
   return (
     <Grid
@@ -14,7 +20,15 @@ const TaskArea: FC = (): ReactElement => {
       }}
       alignSelf="normal"
     >
-      Todos Area
+      <Typography variant="h6" mb={4} color="warning.dark">
+        Today is {format(new Date(), 'PPPP')}
+      </Typography>
+
+      <Box display="flex" justifyContent="space-between">
+        <Counter></Counter>
+        <Counter></Counter>
+        <Counter></Counter>
+      </Box>
     </Grid>
   );
 };

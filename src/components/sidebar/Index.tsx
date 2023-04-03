@@ -16,9 +16,10 @@ const Sidebar: FC = (): ReactElement => {
         position: { md: 'sticky' },
         right: { md: '0px' },
         top: { md: '0px' },
-
+        height: '-webkit-fill-available',
         backgroundColor: 'background.paper',
-        maxHeight: { md: '100vh' },
+        display: 'flex',
+        flexDirection: 'column',
         alignSelf: { md: 'normal' },
         padding: {
           xs: '1em',
@@ -29,9 +30,11 @@ const Sidebar: FC = (): ReactElement => {
     >
       <Box
         sx={{
-          maxHeight: showBar ? '100vh' : '0vh',
+          maxHeight: `${!showBar ? '0vh' : '200vh'}`,
           overflow: 'hidden',
           transition: '1.4s all',
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
         <Profile name="Ali Jahankah"></Profile>
@@ -40,7 +43,7 @@ const Sidebar: FC = (): ReactElement => {
 
       <Button
         sx={{
-          margin: '3em auto 0em',
+          margin: '0em auto',
         }}
         onClick={() => setShowBar(!showBar)}
       >

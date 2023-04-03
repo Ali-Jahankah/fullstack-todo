@@ -11,18 +11,33 @@ import { keyframes } from '@mui/system';
 
 const anim = keyframes`
     0% {
+      -webkit-transform:rotate(-45deg),
+      -ms-transform:rotate(-45deg),
+      -o-transform:rotate(-45deg),
       transform: rotate(-45deg)
     }
     25% {
+      -webkit-transform:rotate(0deg),
+      -ms-transform:rotate(0deg),
+      -o-transform:rotate(0deg),
       transform: rotate(0deg)
     }
     50%{
+      -webkit-transform:rotate(45deg),
+      -ms-transform:rotate(45deg),
+      -o-transform:rotate(45deg),
       transform:rotate(45deg)
     }
     75%{
+      -webkit-transform:rotate(0deg),
+      -ms-transform:rotate(0deg),
+      -o-transform:rotate(0deg),
       transform:rotate(0deg)
     }
     100%{
+      -webkit-transform:rotate(-45deg),
+      -ms-transform:rotate(-45deg),
+      -o-transform:rotate(-45deg),
       transform:rotate(-45deg)
     }
    
