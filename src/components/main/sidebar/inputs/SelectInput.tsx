@@ -26,7 +26,7 @@ const SelectInput: FC<ISelect> = (props): ReactElement => {
         {options?.map(
           (item, index) =>
             (
-              <MenuItem value="New" key={index}>
+              <MenuItem value={item} key={index}>
                 {item}
               </MenuItem>
             ) as JSX.Element,

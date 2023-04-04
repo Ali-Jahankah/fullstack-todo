@@ -14,3 +14,22 @@ export interface IHeaderTask {
 export interface IBodyTask {
   description?: string;
 }
+export interface IFooterTask {
+  progressHandler: (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => void;
+  completeHandler: (
+    e:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLAnchorElement>,
+  ) => void;
+  status?: 'New' | 'Done' | 'In Progress';
+}
+export interface ITask
+  extends IHeaderTask,
+    IBodyTask,
+    IFooterTask {
+  id?: string;
+
+  level?: 'Easy' | 'Challenging' | 'Difficult';
+}

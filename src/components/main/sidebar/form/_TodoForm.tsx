@@ -20,11 +20,11 @@ const TodoForm: FC = (): ReactElement => {
         <DateInput></DateInput>
         <Stack direction="row" spacing={2}>
           <SelectInput
-            options={['New', 'Done', 'Onboard']}
+            options={['New', 'Done', 'In Progress']}
             label="Status"
           ></SelectInput>
           <SelectInput
-            options={['Easy', 'Medium', 'Difficult']}
+            options={['Easy', 'Challenging', 'Difficult']}
             label="Level"
           ></SelectInput>
         </Stack>

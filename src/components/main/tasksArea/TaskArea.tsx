@@ -22,7 +22,15 @@ const TaskArea: FC = (): ReactElement => {
       </Typography>
       <Counters></Counters>
       <Box my={5}>
-        <Task></Task>
+        <Task
+          title="This is a test Title"
+          date={new Date()}
+          description="This is a test Dscription."
+          progressHandler={(e) => console.log(e)}
+          completeHandler={(e) => console.log(e)}
+          status="New"
+          level="Difficult"
+        ></Task>
       </Box>
     </Grid>
   );
