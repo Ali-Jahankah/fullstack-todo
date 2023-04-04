@@ -7,3 +7,10 @@ export interface ICounter {
     count: number;
   };
 }
+export interface IHeaderTask {
+  title?: string;
+  date?: Date;
+}
+export interface IBodyTask {
+  description?: string;
+}
