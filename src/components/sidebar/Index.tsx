@@ -30,7 +30,7 @@ const Sidebar: FC = (): ReactElement => {
     >
       <Box
         sx={{
-          maxHeight: `${!showBar ? '0vh' : '200vh'}`,
+          maxHeight: `${!showBar ? '0vh' : '500vh'}`,
           overflow: 'hidden',
           transition: '1.4s all',
           display: 'flex',
