@@ -4,7 +4,7 @@ import {
   LocalizationProvider,
 } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { IDate } from './interfaces/IDate';
+import { IDate } from '../interfaces/IDate';
 import PropTypes from 'prop-types';
 
 const DateInput: FC<IDate> = (props): ReactElement => {

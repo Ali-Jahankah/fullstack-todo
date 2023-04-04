@@ -1,7 +1,7 @@
 import { Box, Button, Grid } from '@mui/material';
 import React, { FC, ReactElement, useState } from 'react';
-import Profile from './_Profile';
-import TodoForm from './_TodoForm';
+import Profile from './profile/_Profile';
+import TodoForm from './form/_TodoForm';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import { KeyboardDoubleArrowDown } from '@mui/icons-material';
 const Sidebar: FC = (): ReactElement => {

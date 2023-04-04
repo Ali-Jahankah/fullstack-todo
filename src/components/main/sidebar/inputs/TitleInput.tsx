@@ -1,32 +1,30 @@
 import { TextField } from '@mui/material';
 import React, { ReactElement, FC } from 'react';
-import { ITextField } from './interfaces/ITesxtField';
+import { ITextField } from '../interfaces/ITesxtField';
 import PropTypes from 'prop-types';
-const DescriptionInput: FC<ITextField> = (
+const TitleInput: FC<ITextField> = (
   props,
 ): ReactElement => {
   const {
+    disabled = true,
     onChange = (e) => console.log(e.target.value),
-    disabled = false,
   } = props;
   return (
     <TextField
-      id="description"
-      name="description"
-      label="description"
-      placeholder="Description"
+      id="title"
+      label="title"
+      placeholder="title"
       fullWidth
       variant="filled"
       required
-      multiline
-      rows={4}
+      size="small"
       disabled={disabled}
       onChange={onChange}
     ></TextField>
   );
 };
-DescriptionInput.propTypes = {
+TitleInput.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
 };
-export default DescriptionInput;
+export default TitleInput;

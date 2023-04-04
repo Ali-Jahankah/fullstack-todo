@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 import { format } from 'date-fns';
-import Counter from './Counter';
+import Counter from './counter/Counter';
 import { tasks } from './enums/tasks';
 const TaskArea: FC = (): ReactElement => {
   return (

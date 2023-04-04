@@ -5,7 +5,7 @@ import {
   Select,
 } from '@mui/material';
 import React, { ReactElement, FC } from 'react';
-import { ISelect } from './interfaces/ISelect';
+import { ISelect } from '../interfaces/ISelect';
 
 const SelectInput: FC<ISelect> = (props): ReactElement => {
   const {

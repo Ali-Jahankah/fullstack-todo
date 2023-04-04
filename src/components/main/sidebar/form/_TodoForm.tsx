@@ -5,9 +5,9 @@ import {
   Typography,
 } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import TextFields from './TextFields';
-import DateInput from './DateInput';
-import SelectInput from './SelectInput';
+import TextFields from '../inputs/TextFields';
+import DateInput from '../inputs/DateInput';
+import SelectInput from '../inputs/SelectInput';
 
 const TodoForm: FC = (): ReactElement => {
   return (

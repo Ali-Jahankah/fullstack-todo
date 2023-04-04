@@ -1,8 +1,8 @@
 import { Avatar, Box, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
-import { ICounter } from './interfaces/ITaskArea';
+import { ICounter } from '../interfaces/ITaskArea';
 import PropTypes, { InferProps } from 'prop-types';
-import { tasks } from './enums/tasks';
+import { tasks } from '../enums/tasks';
 const Counter: FC<InferProps<ICounter>> = (
   props,
 ): ReactElement => {
