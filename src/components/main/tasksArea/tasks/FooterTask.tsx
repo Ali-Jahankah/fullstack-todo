@@ -14,11 +14,17 @@ const FooterTask: FC<IFooterTask> = ({
   return (
     <Box display="flex" justifyContent="space-between">
       <FormControlLabel
-        control={<Switch defaultChecked></Switch>}
+        control={
+          <Switch
+            defaultChecked
+            onChange={progressHandler}
+          ></Switch>
+        }
         label="In progress"
       ></FormControlLabel>
       <Button
         variant="outlined"
+        onClick={completeHandler}
         color="success"
         sx={{ fontWeight: 700 }}
       >
