@@ -5,10 +5,7 @@ import PropTypes from 'prop-types';
 const DescriptionInput: FC<ITextField> = (
   props,
 ): ReactElement => {
-  const {
-    onChange = (e) => console.log(e.target.value),
-    disabled = false,
-  } = props;
+  const { desc, setDesc, disabled = false } = props;
   return (
     <TextField
       id="description"
@@ -21,12 +18,13 @@ const DescriptionInput: FC<ITextField> = (
       multiline
       rows={4}
       disabled={disabled}
-      onChange={onChange}
+      onChange={setDesc}
+      value={desc}
     ></TextField>
   );
 };
 DescriptionInput.propTypes = {
   disabled: PropTypes.bool,
-  onChange: PropTypes.func,
+  setDesc: PropTypes.func,
 };
 export default DescriptionInput;

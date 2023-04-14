@@ -12,6 +12,7 @@ const SelectInput: FC<ISelect> = (props): ReactElement => {
     options,
     label,
     onChange = (e) => console.log(e),
+    value,
   } = props;
   return (
     <FormControl fullWidth size="small">
@@ -20,7 +21,7 @@ const SelectInput: FC<ISelect> = (props): ReactElement => {
         id={label}
         labelId={`${label}Label`}
         label={label}
-        value=""
+        value={value}
         onChange={onChange}
       >
         {options?.map(

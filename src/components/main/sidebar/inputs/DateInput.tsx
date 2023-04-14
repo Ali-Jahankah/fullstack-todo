@@ -1,4 +1,4 @@
-import React, { ReactElement, FC, useState } from 'react';
+import React, { ReactElement, FC } from 'react';
 import {
   DatePicker,
   LocalizationProvider,
@@ -8,12 +8,7 @@ import { IDate } from '../interfaces/IDate';
 import PropTypes from 'prop-types';
 
 const DateInput: FC<IDate> = (props): ReactElement => {
-  const [date, setDate] = useState<Date | null>(null);
-  const {
-    value = new Date(),
-    onChange = (val) => setDate(val),
-    disabled = false,
-  } = props;
+  const { value, onChange, disabled = false } = props;
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker

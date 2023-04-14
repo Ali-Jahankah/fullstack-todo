@@ -5,10 +5,7 @@ import PropTypes from 'prop-types';
 const TitleInput: FC<ITextField> = (
   props,
 ): ReactElement => {
-  const {
-    disabled = true,
-    onChange = (e) => console.log(e.target.value),
-  } = props;
+  const { disabled = false, setTitle, title } = props;
   return (
     <TextField
       id="title"
@@ -19,12 +16,13 @@ const TitleInput: FC<ITextField> = (
       required
       size="small"
       disabled={disabled}
-      onChange={onChange}
+      onChange={setTitle}
+      value={title}
     ></TextField>
   );
 };
 TitleInput.propTypes = {
   disabled: PropTypes.bool,
-  onChange: PropTypes.func,
+  setTitle: PropTypes.func,
 };
 export default TitleInput;

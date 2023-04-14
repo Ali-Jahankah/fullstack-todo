@@ -13,7 +13,7 @@ export enum Level {
 }
 export interface ISelect extends IDisabled {
   options?: Status[] | Level[];
-
+  value: string;
   label?: string;
   onChange?: (e: SelectChangeEvent) => void;
 }
