@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import Counter from './Counter';
-import { tasks } from '../enums/tasks';
+import { Status } from '../enums/tasks';
 import { Box } from '@mui/material';
 const Counters: FC = (): ReactElement => {
   return (
@@ -8,21 +8,21 @@ const Counters: FC = (): ReactElement => {
       <Counter
         type={{
           color: 'error.light',
-          task: tasks.todo,
+          task: Status.new,
           count: 0,
         }}
       ></Counter>
       <Counter
         type={{
           color: 'success.light',
-          task: tasks.completed,
+          task: Status.completed,
           count: 0,
         }}
       ></Counter>
       <Counter
         type={{
           color: 'warning.light',
-          task: tasks.inProgress,
+          task: Status.inProgress,
           count: 0,
         }}
       ></Counter>

@@ -2,7 +2,7 @@ import { Avatar, Box, Typography } from '@mui/material';
 import React, { FC, ReactElement } from 'react';
 import { ICounter } from '../interfaces/ITaskArea';
 import PropTypes, { InferProps } from 'prop-types';
-import { tasks } from '../enums/tasks';
+import { Status } from '../enums/tasks';
 const Counter: FC<InferProps<ICounter>> = (
   props,
 ): ReactElement => {
@@ -29,7 +29,7 @@ const Counter: FC<InferProps<ICounter>> = (
         </Typography>
       </Avatar>
       <Typography sx={{ fontWeight: '600' }}>
-        {type.task}
+        {type.Status}
       </Typography>
     </Box>
   );
@@ -37,7 +37,7 @@ const Counter: FC<InferProps<ICounter>> = (
 
 Counter.propTypes = {
   type: PropTypes.shape({
-    task: PropTypes.oneOf(Object.values(tasks)),
+    task: PropTypes.oneOf(Object.values(Status)),
     color: PropTypes.string,
     count: PropTypes.number,
   }),

@@ -1,10 +1,59 @@
 import React, { FC, ReactElement } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Grid,
+  LinearProgress,
+  Typography,
+} from '@mui/material';
 import { format } from 'date-fns';
 import Counters from './counter/Counters';
 import Task from './tasks/Task';
+import {
+  useQuery,
+  useMutation,
+} from '@tanstack/react-query';
+import { sendRequest } from '../../../helpers/sendApiReqs';
+import {
+  IData,
+  IRsponse,
+} from '../sidebar/interfaces/IResponse';
+import { IStatusUpdate } from './interfaces/ITaskArea';
+import { Status } from './enums/tasks';
 
 const TaskArea: FC = (): ReactElement => {
+  const { error, isLoading, data } = useQuery(
+    ['tasks'],
+    async () => {
+      return await sendRequest<IData>(
+        'http://localhost:4000/tasks',
+        'Get',
+      );
+    },
+  );
+  const { mutate } = useMutation((data: IStatusUpdate) => {
+    return sendRequest(
+      'http://localhost:4000/tasks/update-task',
+      'Put',
+      data,
+    );
+  });
+  const completeHandler = (id: string) =>
+    mutate({
+      id,
+      status: Status.completed,
+    });
+  const updateHandler = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    id: string,
+  ) =>
+    mutate({
+      id,
+      status: e.target.checked
+        ? Status.inProgress
+        : Status.new,
+    });
   return (
     <Grid
       item
@@ -21,17 +70,51 @@ const TaskArea: FC = (): ReactElement => {
         Today is {format(new Date(), 'PPPP')}
       </Typography>
       <Counters></Counters>
-      <Box my={5}>
-        <Task
-          title="This is a test Title"
-          date={new Date()}
-          description="This is a test Dscription."
-          progressHandler={(e) => console.log(e)}
-          completeHandler={(e) => console.log(e)}
-          status="New"
-          level="Difficult"
-        ></Task>
-      </Box>
+      <>
+        {error && (
+          <Alert severity="error">
+            <AlertTitle>
+              There is an error from the server
+            </AlertTitle>
+          </Alert>
+        )}
+
+        <Box my={5}>
+          {data &&
+            data.data.length === 0 &&
+            !error &&
+            !isLoading && (
+              <Alert>
+                <AlertTitle>
+                  There is no tasks todo or in progress! :({' '}
+                </AlertTitle>
+              </Alert>
+            )}
+
+          {data &&
+          Array.isArray(data.data) &&
+          !error &&
+          !isLoading
+            ? data.data.map(
+                (item: IRsponse, index) =>
+                  item.status !== 'Completed' && (
+                    <Task
+                      id={item.id}
+                      key={item.title + index}
+                      title={item.title}
+                      date={new Date(item.date)}
+                      description={item.description}
+                      progressHandler={updateHandler}
+                      completeHandler={completeHandler}
+                      status={item.status}
+                      level={item.level}
+                    ></Task>
+                  ),
+              )
+            : isLoading &&
+              !error && <LinearProgress></LinearProgress>}
+        </Box>
+      </>
     </Grid>
   );
 };

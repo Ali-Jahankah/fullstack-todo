@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 import HeaderTask from './HeaderTask';
 import BodyTask from './BodyTask';
 import FooterTask from './FooterTask';
@@ -7,6 +7,7 @@ import { ITask } from '../interfaces/ITaskArea';
 
 const Task: FC<ITask> = (props): ReactElement => {
   const {
+    id,
     title,
     description,
     date,
@@ -15,9 +16,16 @@ const Task: FC<ITask> = (props): ReactElement => {
     completeHandler,
     progressHandler,
   } = props;
+  const [bg, setBg] = useState(
+    status === 'New'
+      ? 'background.paper'
+      : 'customColor.main',
+  );
+
   return (
     <Box
       p={2}
+      my={2}
       border="1px solid"
       borderColor={
         level === 'Easy'
@@ -28,12 +36,7 @@ const Task: FC<ITask> = (props): ReactElement => {
       }
       borderRadius="8px"
       sx={{
-        backgroundColor:
-          status === 'New'
-            ? 'background.paper'
-            : status === 'In Progress'
-            ? 'customColor.main'
-            : 'customColor.light',
+        backgroundColor: bg,
       }}
     >
       <HeaderTask title={title} date={date}></HeaderTask>
@@ -42,6 +45,8 @@ const Task: FC<ITask> = (props): ReactElement => {
         completeHandler={completeHandler}
         progressHandler={progressHandler}
         status={status}
+        id={id}
+        setBg={setBg}
       ></FooterTask>
     </Box>
   );

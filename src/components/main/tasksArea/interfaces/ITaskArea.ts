@@ -1,8 +1,12 @@
-import { tasks } from '../enums/tasks';
+import { Dispatch, SetStateAction } from 'react';
+import {
+  Level,
+  Status,
+} from './../../sidebar/interfaces/ISelect';
 
 export interface ICounter {
   type: {
-    task: tasks;
+    task: `${Level}`;
     color: string;
     count: number;
   };
@@ -15,21 +19,22 @@ export interface IBodyTask {
   description?: string;
 }
 export interface IFooterTask {
+  id?: string;
   progressHandler: (
     e: React.ChangeEvent<HTMLInputElement>,
+    id: string,
   ) => void;
-  completeHandler: (
-    e:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.MouseEvent<HTMLAnchorElement>,
-  ) => void;
-  status?: 'New' | 'Done' | 'In Progress';
+  completeHandler: (id: string) => void;
+  status?: `${Status}`;
+  setBg?: Dispatch<SetStateAction<string>> | any;
 }
 export interface ITask
   extends IHeaderTask,
     IBodyTask,
     IFooterTask {
-  id?: string;
-
-  level?: 'Easy' | 'Challenging' | 'Difficult';
+  level?: `${Level}`;
+}
+export interface IStatusUpdate {
+  id: string;
+  status: `${Status}`;
 }
