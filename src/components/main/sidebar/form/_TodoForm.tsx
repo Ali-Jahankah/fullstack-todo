@@ -24,7 +24,6 @@ import {
 } from '@tanstack/react-query';
 import { ICreateTask } from '../interfaces/IRequests';
 import { sendRequest } from '../../../../helpers/sendApiReqs';
-import { IRsponse } from '../interfaces/IResponse';
 const TodoForm: FC = (): ReactElement => {
   const [title, setTitle] = useState<null | string>('');
   const [desc, setDesc] = useState<null | string>('');

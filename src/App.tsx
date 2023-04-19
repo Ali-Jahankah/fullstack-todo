@@ -7,17 +7,21 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import ComposeContext from './context/compose';
+import { rootContext } from './context/root';
 const App: FC = (): ReactElement => {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={customTheme}>
-        <CssBaseline></CssBaseline>
-        <Dashboard />
-      </ThemeProvider>
-      <ReactQueryDevtools
-        initialIsOpen={false}
-      ></ReactQueryDevtools>
+      <ComposeContext components={rootContext}>
+        <ThemeProvider theme={customTheme}>
+          <CssBaseline></CssBaseline>
+          <Dashboard />
+        </ThemeProvider>
+        <ReactQueryDevtools
+          initialIsOpen={false}
+        ></ReactQueryDevtools>
+      </ComposeContext>
     </QueryClientProvider>
   );
 };

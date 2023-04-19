@@ -28,8 +28,8 @@ const Counter: FC<InferProps<ICounter>> = (
           {type.count}
         </Typography>
       </Avatar>
-      <Typography sx={{ fontWeight: '600' }}>
-        {type.Status}
+      <Typography sx={{ fontWeight: '600', color: '#fff' }}>
+        {type.task}
       </Typography>
     </Box>
   );

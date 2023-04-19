@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useState } from 'react';
 import {
   Alert,
   AlertTitle,
@@ -17,13 +17,13 @@ import {
 import { sendRequest } from '../../../helpers/sendApiReqs';
 import {
   IData,
-  IRsponse,
+  IResponse,
 } from '../sidebar/interfaces/IResponse';
 import { IStatusUpdate } from './interfaces/ITaskArea';
 import { Status } from './enums/tasks';
-
 const TaskArea: FC = (): ReactElement => {
-  const { error, isLoading, data } = useQuery(
+  const [force, setForce] = useState<number>(0);
+  const { error, isLoading, data, isSuccess } = useQuery(
     ['tasks'],
     async () => {
       return await sendRequest<IData>(
@@ -39,11 +39,13 @@ const TaskArea: FC = (): ReactElement => {
       data,
     );
   });
-  const completeHandler = (id: string) =>
+  const completeHandler = (id: string) => {
     mutate({
       id,
       status: Status.completed,
     });
+    setForce(2);
+  };
   const updateHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
     id: string,
@@ -69,7 +71,7 @@ const TaskArea: FC = (): ReactElement => {
       <Typography variant="h6" mb={4} color="warning.dark">
         Today is {format(new Date(), 'PPPP')}
       </Typography>
-      <Counters></Counters>
+      {data && <Counters tasks={data}></Counters>}
       <>
         {error && (
           <Alert severity="error">
@@ -96,7 +98,7 @@ const TaskArea: FC = (): ReactElement => {
           !error &&
           !isLoading
             ? data.data.map(
-                (item: IRsponse, index) =>
+                (item: IResponse, index) =>
                   item.status !== 'Completed' && (
                     <Task
                       id={item.id}

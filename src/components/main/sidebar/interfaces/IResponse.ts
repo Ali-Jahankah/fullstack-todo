@@ -2,9 +2,9 @@ import { Status, Level } from './ISelect';
 
 export interface IData {
   msg: string;
-  data: IRsponse[];
+  data: IResponse[];
 }
-export interface IRsponse {
+export interface IResponse {
   id: string;
   title: string;
   date: string;
