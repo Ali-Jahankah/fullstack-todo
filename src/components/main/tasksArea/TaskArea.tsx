@@ -1,4 +1,9 @@
-import React, { FC, ReactElement, useState } from 'react';
+import React, {
+  FC,
+  ReactElement,
+  useContext,
+  useEffect,
+} from 'react';
 import {
   Alert,
   AlertTitle,
@@ -21,9 +26,12 @@ import {
 } from '../sidebar/interfaces/IResponse';
 import { IStatusUpdate } from './interfaces/ITaskArea';
 import { Status } from './enums/tasks';
+import { UpdateStatusContext } from '../../../context/updateStatusConext/UpdateTaskContext';
+
 const TaskArea: FC = (): ReactElement => {
-  const [force, setForce] = useState<number>(0);
-  const { error, isLoading, data, isSuccess } = useQuery(
+  // const [force, setForce] = useState<number>(0);
+  const context = useContext(UpdateStatusContext);
+  const { error, isLoading, data, refetch } = useQuery(
     ['tasks'],
     async () => {
       return await sendRequest<IData>(
@@ -32,30 +40,44 @@ const TaskArea: FC = (): ReactElement => {
       );
     },
   );
-  const { mutate } = useMutation((data: IStatusUpdate) => {
-    return sendRequest(
-      'http://localhost:4000/tasks/update-task',
-      'Put',
-      data,
-    );
-  });
+  const mutateHandler = useMutation(
+    (data: IStatusUpdate) => {
+      return sendRequest(
+        'http://localhost:4000/tasks/update-task',
+        'Put',
+        data,
+      );
+    },
+  );
+  useEffect(() => {
+    console.log(mutateHandler.isSuccess);
+    if (mutateHandler.isSuccess) {
+      console.log('sdsdsdsdsdsdsdsd', context);
+      context.toggle();
+    } else {
+      console.log('ssss');
+    }
+  }, [mutateHandler.isSuccess]);
   const completeHandler = (id: string) => {
-    mutate({
+    mutateHandler.mutate({
       id,
       status: Status.completed,
     });
-    setForce(2);
   };
   const updateHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
     id: string,
   ) =>
-    mutate({
+    mutateHandler.mutate({
       id,
       status: e.target.checked
         ? Status.inProgress
         : Status.new,
     });
+  useEffect(() => {
+    refetch();
+  }, [context.updated]);
+
   return (
     <Grid
       item

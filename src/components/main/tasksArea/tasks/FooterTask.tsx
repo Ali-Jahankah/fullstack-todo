@@ -20,7 +20,9 @@ const FooterTask: FC<IFooterTask> = ({
       <FormControlLabel
         control={
           <Switch
-            defaultChecked={status === Status.inProgress}
+            defaultChecked={
+              status === Status.new ? false : true
+            }
             onChange={(e) => {
               id && progressHandler(e, id);
               setBg(

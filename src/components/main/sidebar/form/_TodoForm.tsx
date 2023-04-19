@@ -13,6 +13,7 @@ import React, {
   ReactElement,
   useEffect,
   useState,
+  useContext,
 } from 'react';
 import TextFields from '../inputs/TextFields';
 import DateInput from '../inputs/DateInput';
@@ -24,6 +25,7 @@ import {
 } from '@tanstack/react-query';
 import { ICreateTask } from '../interfaces/IRequests';
 import { sendRequest } from '../../../../helpers/sendApiReqs';
+import { UpdateStatusContext } from '../../../../context/updateStatusConext/UpdateTaskContext';
 const TodoForm: FC = (): ReactElement => {
   const [title, setTitle] = useState<null | string>('');
   const [desc, setDesc] = useState<null | string>('');
@@ -32,6 +34,7 @@ const TodoForm: FC = (): ReactElement => {
   const [level, setLevel] = useState<string>(Level.easy);
   const [success, setSuccess] = useState<boolean>(false);
 
+  const context = useContext(UpdateStatusContext);
   const createTaskMutation = useMutation(
     (data: ICreateTask) =>
       sendRequest(
@@ -57,6 +60,7 @@ const TodoForm: FC = (): ReactElement => {
   useEffect(() => {
     if (createTaskMutation.isSuccess) {
       setSuccess(true);
+      context.toggle();
     }
     const showMessage = setTimeout(() => {
       setSuccess(false);

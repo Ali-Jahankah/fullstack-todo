@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import React, {
   createContext,
   FC,
@@ -12,9 +11,9 @@ export const UpdateStatusContext = createContext({
   toggle: () => {},
 });
 
-export const UpdateStateProvider: FC<PropsWithChildren> = ({
-  children,
-}): ReactElement => {
+export const UpdateStateProvider: FC<PropsWithChildren> = (
+  props,
+): ReactElement => {
   const [updated, setUpdated] = useState(false);
 
   const toggleHandler = () => {
@@ -24,7 +23,7 @@ export const UpdateStateProvider: FC<PropsWithChildren> = ({
     <UpdateStatusContext.Provider
       value={{ updated: updated, toggle: toggleHandler }}
     >
-      {children}
+      {props.children}
     </UpdateStatusContext.Provider>
   );
 };
