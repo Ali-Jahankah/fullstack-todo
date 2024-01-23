@@ -31,7 +31,7 @@ import { sendRequest } from '../../../helpers/sendApiReqs';
 
 const TaskArea: FC = (): ReactElement => {
   // const [force, setForce] = useState<number>(0);
-  const url = process.env.NODE_ENV === 'development' ?  'http://localhost:4001/api' : 'https://uaral-server.netlify.app/api';
+  const url = window.location.hostname === 'localhost' ?  'http://localhost:4001/api' : 'https://uaral-server.netlify.app/api';
   const context = useContext(UpdateStatusContext);
   const { error, isLoading, data, refetch } = useQuery(
     ['tasks'],
@@ -63,7 +63,7 @@ const TaskArea: FC = (): ReactElement => {
     } else {
       console.log(mutateHandler);
     }
-  }, [mutateHandler.isSuccess]);
+  }, []);
   const completeHandler = (id: string) => {
     mutateHandler.mutate({
       id,
