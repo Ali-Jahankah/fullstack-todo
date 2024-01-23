@@ -36,10 +36,15 @@ const TaskArea: FC = (): ReactElement => {
   const { error, isLoading, data, refetch } = useQuery(
     ['tasks'],
     async () => {
-      return await sendRequest<IData>(
-        url + '/tasks',
-        'Get',
-      );
+      try {
+        return await sendRequest<IData>(
+          url + '/tasks',
+          'Get',
+        )
+      } catch (error) {
+        console.log(error);
+      }
+     
     },
   );
   const mutateHandler = useMutation(
@@ -56,7 +61,7 @@ const TaskArea: FC = (): ReactElement => {
     if (mutateHandler.isSuccess) {
       context.toggle();
     } else {
-      console.log('ssss');
+      console.log(mutateHandler);
     }
   }, [mutateHandler.isSuccess]);
   const completeHandler = (id: string) => {
