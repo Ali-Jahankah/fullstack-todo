@@ -27,6 +27,7 @@ import SelectInput from '../inputs/SelectInput';
 import TextFields from '../inputs/TextFields';
 import { UpdateStatusContext } from '../../../../context/updateStatusConext/UpdateTaskContext';
 import { sendRequest } from '../../../../helpers/sendApiReqs';
+
 const TodoForm: FC = (): ReactElement => {
   const [title, setTitle] = useState<null | string>('');
   const [desc, setDesc] = useState<null | string>('');
@@ -36,10 +37,12 @@ const TodoForm: FC = (): ReactElement => {
   const [success, setSuccess] = useState<boolean>(false);
 
   const context = useContext(UpdateStatusContext);
+  const url = process.env.NODE_ENV === 'development' ?  'http://localhost:4001/api' : 'https://uaral-server.netlify.app/api';
+
   const createTaskMutation = useMutation(
     (data: ICreateTask) =>
       sendRequest(
-        'https://uaral-server.netlify.app/tasks/new-task',
+        url + '/tasks/new-task',
         'Post',
         data,
       ),
