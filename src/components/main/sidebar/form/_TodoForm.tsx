@@ -1,31 +1,32 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
-  Box,
-  Button,
-  Stack,
-  Typography,
   Alert,
   AlertTitle,
+  Box,
+  Button,
   LinearProgress,
+  Stack,
+  Typography,
 } from '@mui/material';
+import { Level, Status } from '../interfaces/ISelect';
 import React, {
   FC,
   ReactElement,
+  useContext,
   useEffect,
   useState,
-  useContext,
 } from 'react';
-import TextFields from '../inputs/TextFields';
-import DateInput from '../inputs/DateInput';
-import SelectInput from '../inputs/SelectInput';
-import { Status, Level } from '../interfaces/ISelect';
 import {
   useMutation,
   useQuery,
 } from '@tanstack/react-query';
+
+import DateInput from '../inputs/DateInput';
 import { ICreateTask } from '../interfaces/IRequests';
-import { sendRequest } from '../../../../helpers/sendApiReqs';
+import SelectInput from '../inputs/SelectInput';
+import TextFields from '../inputs/TextFields';
 import { UpdateStatusContext } from '../../../../context/updateStatusConext/UpdateTaskContext';
+import { sendRequest } from '../../../../helpers/sendApiReqs';
 const TodoForm: FC = (): ReactElement => {
   const [title, setTitle] = useState<null | string>('');
   const [desc, setDesc] = useState<null | string>('');
@@ -38,7 +39,7 @@ const TodoForm: FC = (): ReactElement => {
   const createTaskMutation = useMutation(
     (data: ICreateTask) =>
       sendRequest(
-        'http://localhost:4000/tasks/new-task',
+        'https://uaral-server.netlify.app/tasks/new-task',
         'Post',
         data,
       ),

@@ -1,9 +1,3 @@
-import React, {
-  FC,
-  ReactElement,
-  useContext,
-  useEffect,
-} from 'react';
 import {
   Alert,
   AlertTitle,
@@ -12,30 +6,38 @@ import {
   LinearProgress,
   Typography,
 } from '@mui/material';
-import { format } from 'date-fns';
-import Counters from './counter/Counters';
-import Task from './tasks/Task';
-import {
-  useQuery,
-  useMutation,
-} from '@tanstack/react-query';
-import { sendRequest } from '../../../helpers/sendApiReqs';
 import {
   IData,
   IResponse,
 } from '../sidebar/interfaces/IResponse';
+import React, {
+  FC,
+  ReactElement,
+  useContext,
+  useEffect,
+} from 'react';
+import {
+  useMutation,
+  useQuery,
+} from '@tanstack/react-query';
+
+import Counters from './counter/Counters';
 import { IStatusUpdate } from './interfaces/ITaskArea';
 import { Status } from './enums/tasks';
+import Task from './tasks/Task';
 import { UpdateStatusContext } from '../../../context/updateStatusConext/UpdateTaskContext';
+import { format } from 'date-fns';
+import { sendRequest } from '../../../helpers/sendApiReqs';
 
 const TaskArea: FC = (): ReactElement => {
   // const [force, setForce] = useState<number>(0);
+  const url = process.env.NODE_ENV === 'development' ?  'http://localhost:4001/api' : 'https://uaral-server.netlify.app/api';
   const context = useContext(UpdateStatusContext);
   const { error, isLoading, data, refetch } = useQuery(
     ['tasks'],
     async () => {
       return await sendRequest<IData>(
-        'http://localhost:4000/tasks',
+        url + '/tasks',
         'Get',
       );
     },
@@ -43,7 +45,7 @@ const TaskArea: FC = (): ReactElement => {
   const mutateHandler = useMutation(
     (data: IStatusUpdate) => {
       return sendRequest(
-        'http://localhost:4000/tasks/update-task',
+        url+ '/tasks/update-task',
         'Put',
         data,
       );
@@ -52,7 +54,6 @@ const TaskArea: FC = (): ReactElement => {
   useEffect(() => {
     console.log(mutateHandler.isSuccess);
     if (mutateHandler.isSuccess) {
-      console.log('sdsdsdsdsdsdsdsd', context);
       context.toggle();
     } else {
       console.log('ssss');
