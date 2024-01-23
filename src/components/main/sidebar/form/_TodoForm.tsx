@@ -37,8 +37,7 @@ const TodoForm: FC = (): ReactElement => {
   const [success, setSuccess] = useState<boolean>(false);
 
   const context = useContext(UpdateStatusContext);
-  const url = process.env.NODE_ENV === 'development' ?  'http://localhost:4001/api' : 'https://uaral-server.netlify.app/api';
-
+  const url = window.location.hostname === 'localhost' ?  'http://localhost:4001/api' : 'https://uaral-server.netlify.app/api';
   const createTaskMutation = useMutation(
     (data: ICreateTask) =>
       sendRequest(
