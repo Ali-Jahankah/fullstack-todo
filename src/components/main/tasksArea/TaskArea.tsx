@@ -57,13 +57,17 @@ const TaskArea: FC = (): ReactElement => {
     },
   );
   useEffect(() => {
-    console.log(mutateHandler.isSuccess);
+    console.log(mutateHandler);
+
     if (mutateHandler.isSuccess) {
       context.toggle();
+      console.log('refetch()()()()()(')
+      refetch()
+
     } else {
       console.log(mutateHandler);
     }
-  }, [refetch]);
+  }, [mutateHandler.isSuccess]);
   const completeHandler = (id: string) => {
     mutateHandler.mutate({
       id,
@@ -73,16 +77,18 @@ const TaskArea: FC = (): ReactElement => {
   const updateHandler = (
     e: React.ChangeEvent<HTMLInputElement>,
     id: string,
-  ) =>
-    mutateHandler.mutate({
+  ) => {
+   const test = mutateHandler.mutate({
       id,
       status: e.target.checked
         ? Status.inProgress
         : Status.new,
     });
-  useEffect(() => {
-    refetch();
-  }, [context.updated]);
+    console.log(test);
+    return test
+  }
+   
+
 
   return (
     <Grid
