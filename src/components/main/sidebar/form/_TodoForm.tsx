@@ -19,6 +19,7 @@ import React, {
 import {
   useMutation,
   useQuery,
+  useQueryClient,
 } from '@tanstack/react-query';
 
 import DateInput from '../inputs/DateInput';
@@ -29,6 +30,7 @@ import { UpdateStatusContext } from '../../../../context/updateStatusConext/Upda
 import { sendRequest } from '../../../../helpers/sendApiReqs';
 
 const TodoForm: FC = (): ReactElement => {
+  const queryClient = useQueryClient();  // Initialize queryClient
   const [title, setTitle] = useState<null | string>('');
   const [desc, setDesc] = useState<null | string>('');
   const [date, setDate] = useState<Date | null>(new Date());
@@ -45,6 +47,13 @@ const TodoForm: FC = (): ReactElement => {
         'Post',
         data,
       ),
+      {
+        onSuccess:()=>{
+          queryClient.invalidateQueries(['tasks']);
+          setSuccess(true);
+          context.toggle()
+        }
+      }
   );
   const createTaskHandler = () => {
     if (!title || !desc || !date) {
@@ -64,6 +73,7 @@ const TodoForm: FC = (): ReactElement => {
     if (createTaskMutation.isSuccess) {
       setSuccess(true);
       context.toggle();
+
     }
     const showMessage = setTimeout(() => {
       setSuccess(false);
