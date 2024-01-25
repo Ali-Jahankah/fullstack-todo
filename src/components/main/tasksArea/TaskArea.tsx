@@ -63,7 +63,7 @@ const TaskArea: FC = (): ReactElement => {
     } else {
       console.log(mutateHandler);
     }
-  }, []);
+  }, [refetch]);
   const completeHandler = (id: string) => {
     mutateHandler.mutate({
       id,
