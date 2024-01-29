@@ -30,7 +30,6 @@ import { format } from 'date-fns';
 import { sendRequest } from '../../../helpers/sendApiReqs';
 
 const TaskArea: FC = (): ReactElement => {
-  console.log('test github actions')
   // const [force, setForce] = useState<number>(0);
   const url = process.env.REACT_APP_HOST_NAME;
   const context = useContext(UpdateStatusContext);
