@@ -30,8 +30,9 @@ import { format } from 'date-fns';
 import { sendRequest } from '../../../helpers/sendApiReqs';
 
 const TaskArea: FC = (): ReactElement => {
+  console.log('test github actions')
   // const [force, setForce] = useState<number>(0);
-  const url = window.location.hostname === 'localhost' ?  'http://localhost:4001/api' : 'https://uaral-server.netlify.app/api';
+  const url = process.env.REACT_APP_HOST_NAME;
   const context = useContext(UpdateStatusContext);
   const { error, isLoading, data, refetch } = useQuery(
     ['tasks'],
@@ -57,15 +58,12 @@ const TaskArea: FC = (): ReactElement => {
     },
   );
   useEffect(() => {
-    console.log(mutateHandler);
 
     if (mutateHandler.isSuccess) {
       context.toggle();
       console.log('refetch()()()()()(')
       refetch()
 
-    } else {
-      console.log(mutateHandler);
     }
   }, [mutateHandler.isSuccess]);
   const completeHandler = (id: string) => {
@@ -84,7 +82,6 @@ const TaskArea: FC = (): ReactElement => {
         ? Status.inProgress
         : Status.new,
     });
-    console.log(test);
     return test
   }
    
