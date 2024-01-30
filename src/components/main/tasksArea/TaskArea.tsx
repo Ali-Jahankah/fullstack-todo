@@ -32,13 +32,12 @@ import { sendRequest } from '../../../helpers/sendApiReqs';
 const TaskArea: FC = (): ReactElement => {
   const url = process.env.REACT_APP_HOST_NAME;
   const context = useContext(UpdateStatusContext);
-  console.log(url)
   const { error, isLoading, data, refetch } = useQuery(
     ['tasks'],
     async () => {
       try {
         return await sendRequest<IData>(
-          url + '/tasks',
+          url + '/api/tasks',
           'Get',
         )
       } catch (error) {
@@ -50,7 +49,7 @@ const TaskArea: FC = (): ReactElement => {
   const mutateHandler = useMutation(
     (data: IStatusUpdate) => {
       return sendRequest(
-        url+ '/tasks/update-task',
+        url+ '/api/tasks/update-task',
         'Put',
         data,
       );

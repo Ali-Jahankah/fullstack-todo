@@ -43,7 +43,7 @@ const TodoForm: FC = (): ReactElement => {
   const createTaskMutation = useMutation(
     (data: ICreateTask) =>
       sendRequest(
-        url + '/tasks/new-task',
+        url + '/api/tasks/new-task',
         'Post',
         data,
       ),
