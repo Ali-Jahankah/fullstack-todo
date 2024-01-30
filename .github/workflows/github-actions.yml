@@ -22,6 +22,8 @@ jobs:
         run: npm install
       - name: build project
         run: npm run build
+      - name: List workspace contents
+        run: ls -R
 
   deploy:
     runs-on: ubuntu-latest
