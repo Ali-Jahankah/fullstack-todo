@@ -30,8 +30,6 @@ import { format } from 'date-fns';
 import { sendRequest } from '../../../helpers/sendApiReqs';
 
 const TaskArea: FC = (): ReactElement => {
-  console.log('test github actions')
-  // const [force, setForce] = useState<number>(0);
   const url = process.env.REACT_APP_HOST_NAME;
   const context = useContext(UpdateStatusContext);
   const { error, isLoading, data, refetch } = useQuery(
@@ -39,7 +37,7 @@ const TaskArea: FC = (): ReactElement => {
     async () => {
       try {
         return await sendRequest<IData>(
-          url + '/tasks',
+          url + '/api/tasks',
           'Get',
         )
       } catch (error) {
@@ -51,7 +49,7 @@ const TaskArea: FC = (): ReactElement => {
   const mutateHandler = useMutation(
     (data: IStatusUpdate) => {
       return sendRequest(
-        url+ '/tasks/update-task',
+        url+ '/api/tasks/update-task',
         'Put',
         data,
       );

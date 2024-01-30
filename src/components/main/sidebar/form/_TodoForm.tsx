@@ -43,7 +43,7 @@ console.log('test')
   const createTaskMutation = useMutation(
     (data: ICreateTask) =>
       sendRequest(
-        url + '/tasks/new-task',
+        url + '/api/tasks/new-task',
         'Post',
         data,
       ),
