@@ -28,6 +28,8 @@ jobs:
     needs: build
 
     steps:
+      - name: List workspace contents
+        run: ls -R
       - name: Upload to S3
         uses: jakejarvis/s3-sync-action@master
         with:
