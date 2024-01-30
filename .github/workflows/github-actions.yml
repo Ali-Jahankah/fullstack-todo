@@ -18,6 +18,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+      - name: 'Create env file'
+        run: |
+          touch .env.production
+          echo REACT_APP_HOST_NAME=${{ secrets.AWS_SECRET_ACCESS_KEY }} >> .env.production
+          cat .env.production
       - name: Install dependencies
         run: npm install
       - name: build project
