@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@master
         with:
           ref: deploy
       - name: Install Node.js
@@ -29,9 +29,9 @@ jobs:
 
     steps:
       - name: Upload to S3
-        uses: jakejarvis/s3-sync-action@v0.5.0
+        uses: jakejarvis/s3-sync-action@master
         with:
-          args: --exclude '.git/*' --exclude '.github/*'
+          args: --acl public-read --follow-symlinks --delete --exclude '.git/*' --exclude '.github/*'
 
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
