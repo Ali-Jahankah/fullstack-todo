@@ -30,7 +30,6 @@ import { format } from 'date-fns';
 import { sendRequest } from '../../../helpers/sendApiReqs';
 
 const TaskArea: FC = (): ReactElement => {
-  console.log('This message is coming from github actions')
   const url = process.env.REACT_APP_HOST_NAME;
   const context = useContext(UpdateStatusContext);
   const { error, isLoading, data, refetch } = useQuery(
