@@ -29,7 +29,8 @@
     "start": "react-scripts start",
     "build": "CI=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker-run": "docker run -dp 3000:3000 full-stack"
   },
   "eslintConfig": {
     "extends": [
