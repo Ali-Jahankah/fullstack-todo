@@ -37,7 +37,6 @@ const TodoForm: FC = (): ReactElement => {
   const [status, setStatus] = useState<string>(Status.new);
   const [level, setLevel] = useState<string>(Level.easy);
   const [success, setSuccess] = useState<boolean>(false);
-console.log('test')
   const context = useContext(UpdateStatusContext);
   const url = process.env.REACT_APP_HOST_NAME;
   const createTaskMutation = useMutation(
